@@ -98,6 +98,10 @@ public class SpreadsheetDate extends DayDate {
     /** An optional description for the date. */
     private String description;
 
+    public static final int SERIAL_LOWER_BOUND = 2; // 1/1/1900
+
+    public static final int SERIAL_UPPER_BOUND = 2958465; // 12/31/9999
+
     /**
      * Creates a new date instance.
      *
