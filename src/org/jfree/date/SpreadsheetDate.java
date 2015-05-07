@@ -165,6 +165,10 @@ public class SpreadsheetDate extends DayDate {
 
     }
 
+    public SpreadsheetDate(int day, int month, int year) {
+        this(day, DayDate.Month.make(month), year);
+    }
+
     /**
      * Returns the description that is attached to the date.  It is not 
      * required that a date have a description, but for some applications it 
