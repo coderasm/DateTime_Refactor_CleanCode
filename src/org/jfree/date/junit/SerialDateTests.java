@@ -34,14 +34,6 @@ package org.jfree.date.junit;/* ================================================
  *
  * $Id: org.jfree.date.junit.SerialDateTests.java,v 1.5 2005/10/18 13:15:28 mungady Exp $
  *
- * Changes
- * -------
- * 15-Nov-2001 : Version 1 (DG);
- * 25-Jun-2002 : Removed unnecessary import (DG);
- * 24-Oct-2002 : Fixed errors reported by Checkstyle (DG);
- * 13-Mar-2003 : Added serialization test (DG);
- * 05-Jan-2005 : Added test for bug report 1096282 (DG);
- *
  */
 
 import java.io.ByteArrayInputStream;
@@ -58,6 +50,7 @@ import junit.framework.TestSuite;
 import org.jfree.date.*;
 
 import static org.jfree.date.DayDate.Month;
+import static org.jfree.date.DayDate.Day;
 
 /**
  * Some JUnit tests for the {@link DayDate} class.
@@ -89,7 +82,7 @@ public class SerialDateTests extends TestCase {
      * Problem set up.
      */
     protected void setUp() {
-        this.nov9Y2001 = DayDate.createInstance(9, Month.NOVEMBER, 2001);
+        this.nov9Y2001 = DayDateFactory.makeDate(9, Month.NOVEMBER, 2001);
     }
 
     /**
@@ -97,7 +90,7 @@ public class SerialDateTests extends TestCase {
      */
     public void testAddMonthsTo9Nov2001() {
         final DayDate jan9Y2002 = DayDate.addMonths(2, this.nov9Y2001);
-        final DayDate answer = DayDate.createInstance(9, Month.make(1), 2002);
+        final DayDate answer = DayDateFactory.makeDate(9, Month.make(1), 2002);
         Assert.assertEquals(answer, jan9Y2002);
     }
 
@@ -105,16 +98,16 @@ public class SerialDateTests extends TestCase {
      * A test case for a reported bug, now fixed.
      */
     public void testAddMonthsTo5Oct2003() {
-        final DayDate d1 = DayDate.createInstance(5, Month.OCTOBER, 2003);
+        final DayDate d1 = DayDateFactory.makeDate(5, Month.OCTOBER, 2003);
         final DayDate d2 = DayDate.addMonths(2, d1);
-        Assert.assertEquals(d2, DayDate.createInstance(5, Month.DECEMBER, 2003));
+        Assert.assertEquals(d2, DayDateFactory.makeDate(5, Month.DECEMBER, 2003));
     }
 
     /**
      * A test case for a reported bug, now fixed.
      */
     public void testAddMonthsTo1Jan2003() {
-        final DayDate d1 = DayDate.createInstance(1, Month.JANUARY, 2003);
+        final DayDate d1 = DayDateFactory.makeDate(1, Month.JANUARY, 2003);
         final DayDate d2 = DayDate.addMonths(0, d1);
         Assert.assertEquals(d2, d1);
     }
@@ -124,7 +117,7 @@ public class SerialDateTests extends TestCase {
      */
     public void testMondayPrecedingFriday9Nov2001() {
         DayDate mondayBefore = DayDate.getPreviousDayOfWeek(
-                DayDate.MONDAY, this.nov9Y2001
+                Day.MONDAY, this.nov9Y2001
         );
         Assert.assertEquals(5, mondayBefore.getDayOfMonth());
     }
@@ -134,7 +127,7 @@ public class SerialDateTests extends TestCase {
      */
     public void testMondayFollowingFriday9Nov2001() {
         DayDate mondayAfter = DayDate.getFollowingDayOfWeek(
-                DayDate.MONDAY, this.nov9Y2001
+                Day.MONDAY, this.nov9Y2001
         );
         Assert.assertEquals(12, mondayAfter.getDayOfMonth());
     }
@@ -144,7 +137,7 @@ public class SerialDateTests extends TestCase {
      */
     public void testMondayNearestFriday9Nov2001() {
         DayDate mondayNearest = DayDate.getNearestDayOfWeek(
-                DayDate.MONDAY, this.nov9Y2001
+                Day.MONDAY, this.nov9Y2001
         );
         Assert.assertEquals(12, mondayNearest.getDayOfMonth());
     }
@@ -153,8 +146,8 @@ public class SerialDateTests extends TestCase {
      * The Monday nearest to 22nd January 1970 falls on the 19th.
      */
     public void testMondayNearest22Jan1970() {
-        DayDate jan22Y1970 = DayDate.createInstance(22, Month.JANUARY, 1970);
-        DayDate mondayNearest = DayDate.getNearestDayOfWeek(DayDate.MONDAY, jan22Y1970);
+        DayDate jan22Y1970 = DayDateFactory.makeDate(22, Month.JANUARY, 1970);
+        DayDate mondayNearest = DayDate.getNearestDayOfWeek(Day.MONDAY, jan22Y1970);
         Assert.assertEquals(19, mondayNearest.getDayOfMonth());
     }
 
@@ -164,7 +157,7 @@ public class SerialDateTests extends TestCase {
      */
     public void testWeekdayCodeToString() {
 
-        final String test = DayDate.weekdayCodeToString(DayDate.SATURDAY);
+        final String test = DayDate.weekdayCodeToString(Day.SATURDAY);
         assertEquals("Saturday", test);
 
     }
@@ -176,13 +169,13 @@ public class SerialDateTests extends TestCase {
     public void testStringToWeekday() {
 
         int weekday = DayDate.stringToWeekdayCode("Wednesday");
-        Assert.assertEquals(DayDate.WEDNESDAY, weekday);
+        Assert.assertEquals(Day.WEDNESDAY.index, weekday);
 
         weekday = DayDate.stringToWeekdayCode(" Wednesday ");
-        Assert.assertEquals(DayDate.WEDNESDAY, weekday);
+        Assert.assertEquals(Day.WEDNESDAY.index, weekday);
 
         weekday = DayDate.stringToWeekdayCode("Wed");
-        Assert.assertEquals(DayDate.WEDNESDAY, weekday);
+        Assert.assertEquals(Day.WEDNESDAY.index, weekday);
 
     }
 
@@ -267,7 +260,7 @@ public class SerialDateTests extends TestCase {
      */
     public void testSerialization() {
 
-        DayDate d1 = DayDate.createInstance(15, Month.make(4), 2000);
+        DayDate d1 = DayDateFactory.makeDate(15, Month.make(4), 2000);
         DayDate d2 = null;
 
         try {
@@ -291,9 +284,9 @@ public class SerialDateTests extends TestCase {
      * A test for bug report 1096282 (now fixed).
      */
     public void test1096282() {
-        DayDate d = DayDate.createInstance(29, Month.make(2), 2004);
+        DayDate d = DayDateFactory.makeDate(29, Month.make(2), 2004);
         d = DayDate.addYears(1, d);
-        DayDate expected = DayDate.createInstance(28, Month.make(2), 2005);
+        DayDate expected = DayDateFactory.makeDate(28, Month.make(2), 2005);
         assertTrue(d.isOn(expected));
     }
 
@@ -301,7 +294,7 @@ public class SerialDateTests extends TestCase {
      * Miscellaneous tests for the addMonths() method.
      */
     public void testAddMonths() {
-        DayDate d1 = DayDate.createInstance(31, Month.make(5), 2004);
+        DayDate d1 = DayDateFactory.makeDate(31, Month.make(5), 2004);
         
         DayDate d2 = DayDate.addMonths(1, d1);
         Assert.assertEquals(30, d2.getDayOfMonth());

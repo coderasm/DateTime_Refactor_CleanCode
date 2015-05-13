@@ -34,11 +34,6 @@ package org.jfree.date.junit;/* ================================================
  *
  * $Id: org.jfree.date.junit.SpreadsheetDateTests.java,v 1.3 2005/10/18 13:15:28 mungady Exp $
  *
- * Changes
- * -------
- * 15-Nov-2001 : Version 1 (DG);
- * 24-Oct-2002 : Fixed errors reported by Checkstyle (DG);
- *
  */
 
 import java.io.*;
@@ -50,6 +45,7 @@ import junit.framework.TestSuite;
 import org.jfree.date.*;
 
 import static org.jfree.date.DayDate.Month;
+import static org.jfree.date.DayDate.Day;
 
 
 /**
@@ -95,7 +91,7 @@ public class SpreadsheetDateTests extends TestCase {
      */
     public void test1Jan1900GetDayOfWeek() {
         final int dayOfWeek = this.jan1Y1900.getDayOfWeek();
-        Assert.assertEquals(DayDate.Day.MONDAY, dayOfWeek);
+        Assert.assertEquals(DayDate.Day.MONDAY.index, dayOfWeek);
     }
 
     /**
@@ -104,7 +100,7 @@ public class SpreadsheetDateTests extends TestCase {
     public void test12Nov2001GetDayOfWeek() {
         final DayDate nov12Y2001 = new SpreadsheetDate(12, Month.NOVEMBER, 2001);
         final int dayOfWeek = nov12Y2001.getDayOfWeek();
-        Assert.assertEquals(DayDate.MONDAY, dayOfWeek);
+        Assert.assertEquals(Day.MONDAY.index, dayOfWeek);
     }
 
     /**

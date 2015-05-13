@@ -15,49 +15,49 @@ public class BobsDayDateTest extends TestCase {
     public void testStringToWeekdayCode() throws Exception {
 
         Assert.assertEquals(-1, stringToWeekdayCode("Hello"));
-        Assert.assertEquals(MONDAY, stringToWeekdayCode("Monday"));
-        Assert.assertEquals(MONDAY, stringToWeekdayCode("Mon"));
-        assertEquals(MONDAY, stringToWeekdayCode("monday"));
-        assertEquals(MONDAY, stringToWeekdayCode("MONDAY"));
-        assertEquals(MONDAY, stringToWeekdayCode("mon"));
+        Assert.assertEquals(MONDAY.index, stringToWeekdayCode("Monday"));
+        Assert.assertEquals(MONDAY.index, stringToWeekdayCode("Mon"));
+        assertEquals(MONDAY.index, stringToWeekdayCode("monday"));
+        assertEquals(MONDAY.index, stringToWeekdayCode("MONDAY"));
+        assertEquals(MONDAY.index, stringToWeekdayCode("mon"));
 
-        Assert.assertEquals(TUESDAY, stringToWeekdayCode("Tuesday"));
-        Assert.assertEquals(TUESDAY, stringToWeekdayCode("Tue"));
-        assertEquals(TUESDAY, stringToWeekdayCode("tuesday"));
-        assertEquals(TUESDAY, stringToWeekdayCode("TUESDAY"));
-        assertEquals(TUESDAY, stringToWeekdayCode("tue"));
+        Assert.assertEquals(TUESDAY.index, stringToWeekdayCode("Tuesday"));
+        Assert.assertEquals(TUESDAY.index, stringToWeekdayCode("Tue"));
+        assertEquals(TUESDAY.index, stringToWeekdayCode("tuesday"));
+        assertEquals(TUESDAY.index, stringToWeekdayCode("TUESDAY"));
+        assertEquals(TUESDAY.index, stringToWeekdayCode("tue"));
         //assertEquals(TUESDAY, stringToWeekdayCode("tues"));
 
-        Assert.assertEquals(WEDNESDAY, stringToWeekdayCode("Wednesday"));
-        Assert.assertEquals(WEDNESDAY, stringToWeekdayCode("Wed"));
-        assertEquals(WEDNESDAY, stringToWeekdayCode("wednesday"));
-        assertEquals(WEDNESDAY, stringToWeekdayCode("WEDNESDAY"));
-        assertEquals(WEDNESDAY, stringToWeekdayCode("wed"));
+        Assert.assertEquals(WEDNESDAY.index, stringToWeekdayCode("Wednesday"));
+        Assert.assertEquals(WEDNESDAY.index, stringToWeekdayCode("Wed"));
+        assertEquals(WEDNESDAY.index, stringToWeekdayCode("wednesday"));
+        assertEquals(WEDNESDAY.index, stringToWeekdayCode("WEDNESDAY"));
+        assertEquals(WEDNESDAY.index, stringToWeekdayCode("wed"));
 
-        Assert.assertEquals(THURSDAY, stringToWeekdayCode("Thursday"));
-        Assert.assertEquals(THURSDAY, stringToWeekdayCode("Thu"));
-        assertEquals(THURSDAY, stringToWeekdayCode("thursday"));
-        assertEquals(THURSDAY, stringToWeekdayCode("THURSDAY"));
-        assertEquals(THURSDAY, stringToWeekdayCode("thu"));
+        Assert.assertEquals(THURSDAY.index, stringToWeekdayCode("Thursday"));
+        Assert.assertEquals(THURSDAY.index, stringToWeekdayCode("Thu"));
+        assertEquals(THURSDAY.index, stringToWeekdayCode("thursday"));
+        assertEquals(THURSDAY.index, stringToWeekdayCode("THURSDAY"));
+        assertEquals(THURSDAY.index, stringToWeekdayCode("thu"));
         //assertEquals(THURSDAY, stringToWeekdayCode("thurs"));
 
-        Assert.assertEquals(FRIDAY, stringToWeekdayCode("Friday"));
-        Assert.assertEquals(FRIDAY, stringToWeekdayCode("Fri"));
-        assertEquals(FRIDAY, stringToWeekdayCode("friday"));
-        assertEquals(FRIDAY, stringToWeekdayCode("FRIDAY"));
-        assertEquals(FRIDAY, stringToWeekdayCode("fri"));
+        Assert.assertEquals(FRIDAY.index, stringToWeekdayCode("Friday"));
+        Assert.assertEquals(FRIDAY.index, stringToWeekdayCode("Fri"));
+        assertEquals(FRIDAY.index, stringToWeekdayCode("friday"));
+        assertEquals(FRIDAY.index, stringToWeekdayCode("FRIDAY"));
+        assertEquals(FRIDAY.index, stringToWeekdayCode("fri"));
 
-        Assert.assertEquals(SATURDAY, stringToWeekdayCode("Saturday"));
-        Assert.assertEquals(SATURDAY, stringToWeekdayCode("Sat"));
-        assertEquals(SATURDAY, stringToWeekdayCode("saturday"));
-        assertEquals(SATURDAY, stringToWeekdayCode("SATURDAY"));
-        assertEquals(SATURDAY, stringToWeekdayCode("sat"));
+        Assert.assertEquals(SATURDAY.index, stringToWeekdayCode("Saturday"));
+        Assert.assertEquals(SATURDAY.index, stringToWeekdayCode("Sat"));
+        assertEquals(SATURDAY.index, stringToWeekdayCode("saturday"));
+        assertEquals(SATURDAY.index, stringToWeekdayCode("SATURDAY"));
+        assertEquals(SATURDAY.index, stringToWeekdayCode("sat"));
 
-        Assert.assertEquals(SUNDAY, stringToWeekdayCode("Sunday"));
-        Assert.assertEquals(SUNDAY, stringToWeekdayCode("Sun"));
-        assertEquals(SUNDAY, stringToWeekdayCode("sunday"));
-        assertEquals(SUNDAY, stringToWeekdayCode("SUNDAY"));
-        assertEquals(SUNDAY, stringToWeekdayCode("sun"));
+        Assert.assertEquals(SUNDAY.index, stringToWeekdayCode("Sunday"));
+        Assert.assertEquals(SUNDAY.index, stringToWeekdayCode("Sun"));
+        assertEquals(SUNDAY.index, stringToWeekdayCode("sunday"));
+        assertEquals(SUNDAY.index, stringToWeekdayCode("SUNDAY"));
+        assertEquals(SUNDAY.index, stringToWeekdayCode("sun"));
     }
 
     public void testWeekdayCodeToString() throws Exception {
@@ -362,8 +362,8 @@ public class BobsDayDateTest extends TestCase {
         assertEquals(d(21, Month.APRIL, 2006), getNearestDayOfWeek(FRIDAY, d(18, Month.APRIL, 2006)));
         assertEquals(d(21, Month.APRIL, 2006), getNearestDayOfWeek(FRIDAY, d(19, Month.APRIL, 2006)));
         assertEquals(d(21, Month.APRIL, 2006), getNearestDayOfWeek(FRIDAY, d(20, Month.APRIL, 2006)));
-        Assert.assertEquals(d(21, Month.APRIL, 2006), DayDate.getNearestDayOfWeek(DayDate.FRIDAY, d(21, Month.APRIL, 2006)));
-        Assert.assertEquals(d(21, Month.APRIL, 2006), DayDate.getNearestDayOfWeek(DayDate.FRIDAY, d(22, Month.APRIL, 2006)));
+        Assert.assertEquals(d(21, Month.APRIL, 2006), DayDate.getNearestDayOfWeek(Day.FRIDAY, d(21, Month.APRIL, 2006)));
+        Assert.assertEquals(d(21, Month.APRIL, 2006), DayDate.getNearestDayOfWeek(Day.FRIDAY, d(22, Month.APRIL, 2006)));
 
         assertEquals(d(15, Month.APRIL, 2006), getNearestDayOfWeek(SATURDAY, d(16, Month.APRIL, 2006)));
         assertEquals(d(15, Month.APRIL, 2006), getNearestDayOfWeek(SATURDAY, d(17, Month.APRIL, 2006)));
@@ -371,10 +371,10 @@ public class BobsDayDateTest extends TestCase {
         assertEquals(d(22, Month.APRIL, 2006), getNearestDayOfWeek(SATURDAY, d(19, Month.APRIL, 2006)));
         assertEquals(d(22, Month.APRIL, 2006), getNearestDayOfWeek(SATURDAY, d(20, Month.APRIL, 2006)));
         assertEquals(d(22, Month.APRIL, 2006), getNearestDayOfWeek(SATURDAY, d(21, Month.APRIL, 2006)));
-        Assert.assertEquals(d(22, Month.APRIL, 2006), DayDate.getNearestDayOfWeek(DayDate.SATURDAY, d(22, Month.APRIL, 2006)));
+        Assert.assertEquals(d(22, Month.APRIL, 2006), DayDate.getNearestDayOfWeek(Day.SATURDAY, d(22, Month.APRIL, 2006)));
 
         try {
-            DayDate.getNearestDayOfWeek(-1, d(1, Month.JANUARY, 2006));
+            DayDate.getNearestDayOfWeek(Day.make(-1), d(1, Month.JANUARY, 2006));
             Assert.fail("Invalid day of week code should throw exception");
         } catch (IllegalArgumentException e) {
         }
@@ -382,7 +382,7 @@ public class BobsDayDateTest extends TestCase {
 
 
     public void testEndOfCurrentMonth() throws Exception {
-        DayDate d = DayDate.createInstance(2);
+        DayDate d = DayDateFactory.makeDate(2);
         Assert.assertEquals(d(31, Month.JANUARY, 2006), d.getEndOfCurrentMonth(d(1, Month.JANUARY, 2006)));
         Assert.assertEquals(d(28, Month.FEBRUARY, 2006), d.getEndOfCurrentMonth(d(1, Month.FEBRUARY, 2006)));
         Assert.assertEquals(d(31, Month.MARCH, 2006), d.getEndOfCurrentMonth(d(1, Month.MARCH, 2006)));
@@ -425,7 +425,7 @@ public class BobsDayDateTest extends TestCase {
     }
 
     public void testCreateInstanceFromDDMMYYY() throws Exception {
-        DayDate date = DayDate.createInstance(1, Month.JANUARY, 1900);
+        DayDate date = DayDateFactory.makeDate(1, Month.JANUARY, 1900);
         Assert.assertEquals(1, date.getDayOfMonth());
         Assert.assertEquals(Month.JANUARY, Month.make(date.getMonth()));
         Assert.assertEquals(1900, date.getYYYY());
@@ -433,15 +433,15 @@ public class BobsDayDateTest extends TestCase {
     }
 
     public void testCreateInstanceFromSerial() throws Exception {
-        Assert.assertEquals(d(1, Month.JANUARY, 1900), DayDate.createInstance(2));
-        Assert.assertEquals(d(1, Month.JANUARY, 1901), DayDate.createInstance(367));
+        Assert.assertEquals(d(1, Month.JANUARY, 1900), DayDateFactory.makeDate(2));
+        Assert.assertEquals(d(1, Month.JANUARY, 1901), DayDateFactory.makeDate(367));
     }
 
     public void testCreateInstanceFromJavaDate() throws Exception {
         Assert.assertEquals(d(1, Month.JANUARY, 1900),
-                DayDate.createInstance(new GregorianCalendar(1900, 0, 1).getTime()));
+                DayDateFactory.makeDate(new GregorianCalendar(1900, 0, 1).getTime()));
         Assert.assertEquals(d(1, Month.JANUARY, 2006),
-                DayDate.createInstance(new GregorianCalendar(2006, 0, 1).getTime()));
+                DayDateFactory.makeDate(new GregorianCalendar(2006, 0, 1).getTime()));
     }
 
     public static void main(String[] args) {

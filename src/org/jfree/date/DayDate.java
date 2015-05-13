@@ -125,81 +125,33 @@ public abstract class DayDate implements Comparable,
      */
     public static final int MAXIMUM_YEAR_SUPPORTED = 9999;
 
-    /**
-     * The number of days in each month in non leap years.
-     */
-    static final int[] LAST_DAY_OF_MONTH =
+    private static final int[] LAST_DAY_OF_MONTH =
             {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-    /**
-     * The number of days in a (non-leap) year up to the end of each month.
-     */
-    static final int[] AGGREGATE_DAYS_TO_END_OF_MONTH =
-            {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365};
+    public enum WeekInMonth {
+        FIRST(1),
+        SECOND(2),
+        THIRD(3),
+        FOURTH(4),
+        LAST(0);
+        public final int index;
 
-    /**
-     * The number of days in a year up to the end of the preceding month.
-     */
-    static final int[] AGGREGATE_DAYS_TO_END_OF_PRECEDING_MONTH =
-            {0, 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365};
+        WeekInMonth(int index) {
+            this.index = index;
+        }
+    }
 
-    /**
-     * The number of days in a leap year up to the end of each month.
-     */
-    static final int[] LEAP_YEAR_AGGREGATE_DAYS_TO_END_OF_MONTH =
-            {0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335, 366};
+    public enum DateInterval {
+        CLOSED(3),
+        CLOSED_LEFT(1),
+        CLOSED_RIGHT(2),
+        OPEN(0);
+        public final int index;
 
-    /**
-     * The number of days in a leap year up to the end of the preceding month.
-     */
-    static final int[]
-            LEAP_YEAR_AGGREGATE_DAYS_TO_END_OF_PRECEDING_MONTH =
-            {0, 0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335, 366};
-
-    /**
-     * A useful constant for referring to the first week in a month.
-     */
-    public static final int FIRST_WEEK_IN_MONTH = 1;
-
-    /**
-     * A useful constant for referring to the second week in a month.
-     */
-    public static final int SECOND_WEEK_IN_MONTH = 2;
-
-    /**
-     * A useful constant for referring to the third week in a month.
-     */
-    public static final int THIRD_WEEK_IN_MONTH = 3;
-
-    /**
-     * A useful constant for referring to the fourth week in a month.
-     */
-    public static final int FOURTH_WEEK_IN_MONTH = 4;
-
-    /**
-     * A useful constant for referring to the last week in a month.
-     */
-    public static final int LAST_WEEK_IN_MONTH = 0;
-
-    /**
-     * Useful range constant.
-     */
-    public static final int INCLUDE_NONE = 0;
-
-    /**
-     * Useful range constant.
-     */
-    public static final int INCLUDE_FIRST = 1;
-
-    /**
-     * Useful range constant.
-     */
-    public static final int INCLUDE_SECOND = 2;
-
-    /**
-     * Useful range constant.
-     */
-    public static final int INCLUDE_BOTH = 3;
+        DateInterval(int index) {
+            this.index = index;
+        }
+    }
 
     /**
      * Useful constant for specifying a day of the week relative to a fixed
@@ -890,7 +842,7 @@ public abstract class DayDate implements Comparable,
      * @return the earliest date that falls on the specified day-of-the-week
      * and is AFTER this date.
      */
-    public DayDate getFollowingDayOfWeek(final int targetDOW) {
+    public DayDate getFollowingDayOfWeek(final Day targetDOW) {
         return getFollowingDayOfWeek(targetDOW, this);
     }
 
@@ -900,7 +852,7 @@ public abstract class DayDate implements Comparable,
      * @param targetDOW a code for the target day-of-the-week.
      * @return the nearest date that falls on the specified day-of-the-week.
      */
-    public DayDate getNearestDayOfWeek(final int targetDOW) {
+    public DayDate getNearestDayOfWeek(final Day targetDOW) {
         return getNearestDayOfWeek(targetDOW, this);
     }
 
