@@ -502,7 +502,12 @@ public class SpreadsheetDate extends DayDate {
         // what's left is d(+1);
         this.day = this.serial - ss2 
                    - daysToEndOfPrecedingMonth[this.month] + 1;
-
     }
 
+    public static int leapYearCount(int yyyy) {
+        int leap4 = (yyyy - 1896) / 4;
+        int leap100 = (yyyy - 1800) / 100;
+        int leap400 = (yyyy - 1600) / 400;
+        return leap4 - leap100 + leap400;
+    }
 }
